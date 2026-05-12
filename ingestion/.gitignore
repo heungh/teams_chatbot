@@ -1,0 +1,6 @@
+node_modules/
+raw/
+processed/
+.env
+.env.*
+*.log

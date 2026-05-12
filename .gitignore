@@ -1,0 +1,73 @@
+# =============================================================================
+# Teams × Bedrock KB chatbot — root .gitignore
+# 푸시 전 반드시 `git status` 로 ignore 동작 확인.
+# =============================================================================
+
+# ---- OS / Editor ----
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# ---- Claude Code project state (개인 설정, 푸시 X) ----
+.claude/
+CLAUDE.md.bak
+
+# ---- Node / TypeScript ----
+node_modules/
+.npm
+.pnpm-store/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+*.tsbuildinfo
+next-env.d.ts
+
+# ---- Next.js ----
+.next/
+out/
+build/
+dist/
+.vercel
+
+# ---- Environment / Secrets ----
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.production.local
+.env.test.local
+*.pem
+*.key
+secrets.json
+credentials
+
+# ---- Teams data (PII — 실제 채팅 기록은 절대 푸시 금지) ----
+ingestion/raw/
+ingestion/processed/
+
+# ---- AWS local config (혹시 모르니) ----
+.aws/
+
+# ---- Python (스크립트 추가 시) ----
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ---- Misc ----
+*.tmp
+*.bak
+coverage/
+.nyc_output/

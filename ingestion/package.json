@@ -1,0 +1,23 @@
+{
+  "name": "teams-bedrock-ingestion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch": "tsx fetch-messages.ts",
+    "transform": "tsx transform.ts",
+    "aws:create-index": "tsx aws/create-oss-index.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/credential-provider-node": "^3.600.0",
+    "@opensearch-project/opensearch": "^2.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
