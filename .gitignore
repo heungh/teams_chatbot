@@ -20,6 +20,9 @@ ehthumbs.db
 .claude/
 CLAUDE.md.bak
 
+# ---- 내부 작업 이력 (개인 로그) ----
+work_history.md
+
 # ---- Node / TypeScript ----
 node_modules/
 .npm
