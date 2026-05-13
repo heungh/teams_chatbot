@@ -81,7 +81,8 @@ npm run dev     # http://localhost:3000
 | 2. 변환 | `transform.ts` → 27 thread chunks (Markdown + 메타데이터) | (코드 자체) |
 | 3. AWS 셋업 | S3 + IAM + OSS + Bedrock KB + Data Source + Ingestion | [02-콘솔](docs/02-aws-console-setup.md) / [02b-CLI 자동화](docs/02b-aws-cli-setup.md) |
 | 4. Next.js 챗봇 | App Router + `/api/chat` + 채팅 UI + 인용 표시 | [web/README](web/README.md) |
-| 5. Teams 통합 (옵션) | `/api/teams/webhook` — 채널에서 `@AskBot` 호출 | [03-Teams Webhook](docs/03-teams-webhook-setup.md) |
+| 5a. Teams Outgoing Webhook (deprecated) | `/api/teams/webhook` — HMAC | [03-Teams Webhook](docs/03-teams-webhook-setup.md) |
+| 5b. Teams Power Automate Workflow | `/api/teams/automate` — 헤더 인증 (MS 권장 대체재) | [04-Power Automate](docs/04-power-automate-setup.md) |
 
 ---
 
