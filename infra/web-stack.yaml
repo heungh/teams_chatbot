@@ -90,7 +90,9 @@ Resources:
                   - bedrock:GetInferenceProfile
                   - bedrock:GetFoundationModel
                 Resource:
-                  - !Sub arn:aws:bedrock:${AWS::Region}::foundation-model/*
+                  # foundation-model 은 cross-region routing 위해 모든 리전 허용
+                  # (us.* inference profile 이 us-east-1, us-east-2 등으로 라우팅)
+                  - arn:aws:bedrock:*::foundation-model/*
                   - !Sub arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/*
               - Sid: SsmRead
                 Effect: Allow
