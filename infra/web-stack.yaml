@@ -30,6 +30,13 @@ Parameters:
   ParamPrefix:
     Type: String
     Default: /teams-bedrock-chatbot
+  CloudFrontOriginPrefixListId:
+    Type: String
+    Default: pl-82a045eb
+    Description: |
+      Managed prefix list "com.amazonaws.global.cloudfront.origin-facing" for the region.
+      us-west-2: pl-82a045eb. Look up other regions with:
+      aws ec2 describe-managed-prefix-lists --filters Name=prefix-list-name,Values=com.amazonaws.global.cloudfront.origin-facing
 
 Resources:
 
@@ -77,7 +84,11 @@ Resources:
                 Resource: !Sub arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:knowledge-base/*
               - Sid: BedrockModelInvoke
                 Effect: Allow
-                Action: bedrock:InvokeModel
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                  - bedrock:GetInferenceProfile
+                  - bedrock:GetFoundationModel
                 Resource:
                   - !Sub arn:aws:bedrock:${AWS::Region}::foundation-model/*
                   - !Sub arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/*
@@ -104,14 +115,14 @@ Resources:
   AlbSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: ALB ingress from internet (CloudFront origin)
+      GroupDescription: ALB ingress restricted to CloudFront edge origin IPs only
       VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          CidrIp: 0.0.0.0/0
-          Description: HTTP from internet (filtered via CloudFront in front)
+          SourcePrefixListId: !Ref CloudFrontOriginPrefixListId
+          Description: CloudFront origin-facing managed prefix list
       Tags:
         - Key: Name
           Value: !Sub ${ProjectName}-alb-sg
